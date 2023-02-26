@@ -121,6 +121,9 @@ func resourceHelloDelete(ctx context.Context, d *schema.ResourceData, meta inter
 	return diag.FromErr(err)
 }
 
+// get state  -> create
+// get state -> read -> update
+//			         ->	create
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 type HelloApp struct {
@@ -137,7 +140,7 @@ func (ha *HelloApp) Update(ctx context.Context, id string) (string, error) {
 }
 
 func (ha *HelloApp) Get(ctx context.Context, id string) (string, error) {
-	// return fmt.Sprintf("Hello: %s!", id), err
+	//return fmt.Sprintf("Hello: %s!", id), nil
 	u, err := uuid.GenerateUUID()
 	return fmt.Sprintf("Hello: %s!", u), err
 }
